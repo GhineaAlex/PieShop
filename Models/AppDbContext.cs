@@ -14,6 +14,8 @@ namespace WebApplication1.Models
 
         public DbSet<Pie> Pies { get; set; }
         public DbSet<Category> Categories { get; set; }
+        
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
@@ -27,7 +29,7 @@ namespace WebApplication1.Models
             {
                 PieId = 1,
                 Name = "Apple Pie",
-                Price = 13,
+                Price = 13.53M,
                 ShortDescription = "Best applie pie",
                 LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. ",
                 CategoryId = 1,
@@ -43,7 +45,7 @@ namespace WebApplication1.Models
             {
                 PieId = 2,
                 Name = "Cheese cakes",
-                Price = 16,
+                Price = 16.30M,
                 ShortDescription = "Best cheese cakes",
                 LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. ",
                 CategoryId = 2,

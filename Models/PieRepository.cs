@@ -14,7 +14,13 @@ namespace WebApplication1.Models
         {
             _appDbContext = appDbContext;
         }
-
+        public IEnumerable<Pie> Pies
+        {
+            get
+            {
+                return _appDbContext.Pies.Include(c => c.Category);
+            }
+        }
         public IEnumerable<Pie> AllPies
         {
             get

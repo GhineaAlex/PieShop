@@ -29,9 +29,15 @@ namespace WebApplication1
         {
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            
+
+            //use a lambda pentru a invoca services collection; cand un user intra se va crea un scoped shopping cart pt acel user
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            services.AddHttpContextAccessor();
+            //add middleware pt a suporta sessions
+            services.AddSession();
             services.AddControllersWithViews();
         }
 
@@ -51,6 +57,8 @@ namespace WebApplication1
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();//pt a crea middleware si ordinea in pipeline
+
 
             app.UseRouting();
 
